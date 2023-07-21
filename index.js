@@ -12,14 +12,14 @@ const flags = args.parse(process.argv)
 const imageName = flags.image
 
 if(imageName){
-    let image = (await readImage(imageName)).resize(IMAGE_SIZE, IMAGE_SIZE)
+    let image = (await readImage(imageName)).resize(IMAGE_SIZE, IMAGE_SIZE, Jimp.RESIZE_NEAREST_NEIGHBOR)
     const text = await imageToText(image) 
     updateAsciiFile(text)
     console.log(chalk.green("✅ Done! The image has updated succesfully."))
     process.exit(0)
 }
 
-const imageText = fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8", err => {
+const imageText = fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8", error => {
     console.error(chalk.red(`❌ An error ocurred while trying to show the image: ${error}`))
     process.exit(1)
 })
@@ -58,7 +58,7 @@ async function imageToText(image){
             const { r, g, b } = await getPixelColorInRGB({
                 image, x, y
             })
-            lineText += chalk.bgRgb(r, g, b).bold("").padStart(IMAGE_HORIZONTAL_SCALE)
+            lineText += chalk.bgRgb(r, g, b).bold("".padStart(IMAGE_HORIZONTAL_SCALE))
         }
         imageOutput += `${lineText}${os.EOL}`
     }
