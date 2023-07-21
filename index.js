@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import fs from 'node:fs'
 import args from 'args'
 import { ASCII_OUTPUT_FILE_PATH, GAP, IMAGE_SIZE, IMAGE_HORIZONTAL_SCALE } from './consts.js'
+import { getUserStats } from './info-scrapper.js'
 import os from 'node:os'
 
 args.option("image", "The image to show next to your stats")
@@ -23,24 +24,7 @@ const imageText = fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8", err => {
     process.exit(1)
 })
 
-const statsText = 
-`fabri@fabri-pc
---------------
-OS: Arch Linux x86_64
-Kernel: 6.4.4-arch1-1
-Uptime: 1 day, 28 mins
-Shell: bash 5.1.16
-Resolution: 1280x1024
-DE: qtile
-WM: LG3D
-Theme: deepin-dark [GTK2/3]
-Icons: bloom [GTK2/3]
-Terminal: alacritty
-Terminal Font: Cascadia Code
-CPU: Intel i3-6100 (4) @ 3.700GHz
-GPU: NVIDIA GeForce GTX 1060 3GB
-GPU: Intel HD Graphics 530
-Memory: 5247MiB / 7832MiB`
+const statsText = getUserStats()
 const imageTextSplittedByLine = imageText.split(os.EOL)
 const statsTextSplittedByLine = statsText.split(os.EOL)
 let textToShow = ""
