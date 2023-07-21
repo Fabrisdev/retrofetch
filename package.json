@@ -1,0 +1,21 @@
+{
+  "name": "retrofetch",
+  "version": "1.0.0",
+  "description": "A replica of neofetch how I would like it",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "afetch",
+    "neofetch"
+  ],
+  "author": "fabrisdev",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "args": "^5.0.3",
+    "chalk": "^5.3.0",
+    "jimp": "^0.22.8"
+  }
+}
