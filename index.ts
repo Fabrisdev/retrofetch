@@ -65,7 +65,7 @@ async function imageToText(image){
 function updateAsciiFile(ascii){
     try{
         fs.writeFileSync(ASCII_OUTPUT_FILE_PATH, ascii)
-    }catch{
+    }catch (error){
         console.error(chalk.red(`❌ An error ocurred while trying to write to the output ascii file: ${error}`))
         process.exit(1)
     }
