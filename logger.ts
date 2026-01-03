@@ -1,6 +1,8 @@
 import chalk from "chalk";
 
-export function log() {
+export const logger = log();
+
+function log() {
 	const logger = {
 		success(message: string) {
 			console.log(chalk.green(message));
