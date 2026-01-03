@@ -4,7 +4,7 @@
   "description": "A replica of neofetch how I would like it",
   "main": "index.js",
   "scripts": {
-    "start": "bun index.js"
+    "start": "bun index.ts"
   },
   "keywords": [
     "afetch",
