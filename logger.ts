@@ -5,11 +5,11 @@ export const logger = log();
 function log() {
 	const logger = {
 		success(message: string) {
-			console.log(chalk.green(message));
+			console.log(chalk.green(`✅ ${message}`));
 			return this as Omit<typeof log, "crash">;
 		},
 		error(message: string) {
-			console.error(chalk.red(message));
+			console.error(chalk.red(`❌ ${message}`));
 			return this as Omit<typeof log, "exit">;
 		},
 		crash() {
