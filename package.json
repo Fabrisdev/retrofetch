@@ -17,5 +17,8 @@
     "args": "5.0.3",
     "chalk": "5.3.0",
     "jimp": "0.22.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.10"
   }
 }
