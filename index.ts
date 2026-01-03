@@ -19,10 +19,7 @@ if(imageName){
     process.exit(0)
 }
 
-const imageText = fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8", error => {
-    console.error(chalk.red(`❌ An error ocurred while trying to show the image: ${error}`))
-    process.exit(1)
-})
+const imageText = fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8")
 
 const statsText = getUserStats()
 const imageTextSplittedByLine = imageText.split(os.EOL)
