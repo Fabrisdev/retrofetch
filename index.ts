@@ -10,6 +10,7 @@ import {
 	IMAGE_SIZE,
 } from "./consts.js";
 import { getUserStats } from "./info-scrapper.js";
+import { logger } from "./logger.js";
 
 args.option("image", "The image to show next to your stats");
 
@@ -24,8 +25,7 @@ if (imageName) {
 	);
 	const text = await imageToText(image);
 	updateAsciiFile(text);
-	console.log(chalk.green("✅ Done! The image has updated succesfully."));
-	process.exit(0);
+	logger.success("Done! The image has updated succesfully.").exit();
 }
 
 const imageText = tryFindImageText();
@@ -84,12 +84,11 @@ function updateAsciiFile(ascii) {
 	try {
 		fs.writeFileSync(ASCII_OUTPUT_FILE_PATH, ascii);
 	} catch (error) {
-		console.error(
-			chalk.red(
-				`❌ An error ocurred while trying to write to the output ascii file: ${error}`,
-			),
-		);
-		process.exit(1);
+		logger
+			.error(
+				`An error ocurred while trying to write to the output ascii file: ${error}`,
+			)
+			.crash();
 	}
 }
 
@@ -98,10 +97,9 @@ async function readImage(imageName) {
 	try {
 		image = await Jimp.read(imageName);
 	} catch (error) {
-		console.error(
-			chalk.red(`❌ An error ocurred while trying to read the image: ${error}`),
-		);
-		process.exit(1);
+		logger
+			.error(`An error ocurred while trying to read the image: ${error}`)
+			.crash();
 	}
 	return image;
 }
@@ -115,9 +113,8 @@ function tryFindImageText() {
 	try {
 		return fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8");
 	} catch (error) {
-		console.error(
-			chalk.red(`❌ An error ocurred while trying to show the image: ${error}`),
-		);
-		process.exit(1);
+		logger
+			.error(`An error ocurred while trying to show the image: ${error}`)
+			.crash();
 	}
 }
