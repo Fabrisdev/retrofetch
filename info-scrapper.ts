@@ -30,7 +30,7 @@ Memory: 5247MiB / 7832MiB`;
 
 //This will only work on linux for the moment
 function getScreenResolution() {
-	let output;
+	let output = "";
 	if (process.platform === "win32") {
 		output =
 			"❌ An error ocurred while trying to get the screen resolution: Unsupported platform";
