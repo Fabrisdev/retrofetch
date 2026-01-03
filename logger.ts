@@ -1,7 +1,7 @@
 import chalk from "chalk";
 
 class Logger {
-	log(message: string) {
+	success(message: string) {
 		console.log(chalk.green(message));
 	}
 	error(message: string) {
