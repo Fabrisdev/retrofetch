@@ -39,7 +39,7 @@ function getScreenResolution() {
 			}
 			console.error(
 				chalk.red(
-					`❌ An error ocurred while trying to get the screen resolution: ${error}`,
+					`❌ An error ocurred while trying to get the screen resolution: ${err}`,
 				),
 			);
 			process.exit(1);
