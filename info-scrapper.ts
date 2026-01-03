@@ -1,5 +1,5 @@
-import { exec } from "node:child_process";
 import os from "node:os";
+import { $ } from "bun";
 import chalk from "chalk";
 
 const { username, shell } = os.userInfo();
@@ -29,23 +29,24 @@ Memory: 5247MiB / 7832MiB`;
 }
 
 //This will only work on linux for the moment
-function getScreenResolution() {
-	let output = "";
+async function getScreenResolution() {
 	if (process.platform === "win32") {
-		output =
-			"❌ An error ocurred while trying to get the screen resolution: Unsupported platform";
-		return;
+		console.error(
+			chalk.red(
+				"❌ An error ocurred while trying to get the screen resolution: Unsupported platform",
+			),
+		);
+		process.exit(1);
 	}
-	exec("xrandr 2> /dev/null | grep * | cut -d ' ' -f4", (err, stdout) => {
-		if (err) {
+	const output = $`xrandr 2> /dev/null | grep * | cut -d ' ' -f4`.catch(
+		(error) => {
 			console.error(
 				chalk.red(
-					`❌ An error ocurred while trying to get the screen resolution: ${err}`,
+					`❌ An error ocurred while trying to get the screen resolution: ${error}`,
 				),
 			);
 			process.exit(1);
-		}
-		output = stdout;
-	});
+		},
+	);
 	return output;
 }
