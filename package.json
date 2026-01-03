@@ -1,24 +1,24 @@
 {
-  "name": "retrofetch",
-  "version": "1.0.0",
-  "description": "A replica of neofetch how I would like it",
-  "main": "index.js",
-  "scripts": {
-    "start": "bun index.ts"
-  },
-  "keywords": [
-    "afetch",
-    "neofetch"
-  ],
-  "author": "fabrisdev",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "args": "5.0.3",
-    "chalk": "5.3.0",
-    "jimp": "0.22.8"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.3.10"
-  }
+	"name": "retrofetch",
+	"version": "1.0.0",
+	"description": "A replica of neofetch how I would like it",
+	"main": "index.js",
+	"scripts": {
+		"start": "bun index.ts"
+	},
+	"keywords": [
+		"afetch",
+		"neofetch"
+	],
+	"author": "fabrisdev",
+	"license": "ISC",
+	"type": "module",
+	"dependencies": {
+		"args": "5.0.3",
+		"chalk": "5.3.0",
+		"jimp": "0.22.8"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.10"
+	}
 }
