@@ -31,12 +31,13 @@ Memory: 5247MiB / 7832MiB`;
 //This will only work on linux for the moment
 function getScreenResolution() {
 	let output;
+	if (process.platform === "win32") {
+		output =
+			"❌ An error ocurred while trying to get the screen resolution: Unsupported platform";
+		return;
+	}
 	exec("xrandr 2> /dev/null | grep * | cut -d ' ' -f4", (err, stdout) => {
 		if (err) {
-			if (process.platform === "win32") {
-				output = "❌ Can't get info on Windows";
-				return;
-			}
 			console.error(
 				chalk.red(
 					`❌ An error ocurred while trying to get the screen resolution: ${err}`,
