@@ -6,7 +6,7 @@ const { username, shell } = os.userInfo();
 const hostname = os.hostname();
 const shellWithoutPath = shell.split("/").at(-1); //this may not work on Windows
 const timeFormatter = new Intl.RelativeTimeFormat("en", { style: "long" });
-const screenRes = getScreenResolution(); // Optimize this with promises (promisify) later
+const screenRes = await getScreenResolution(); // Optimize this with promises (promisify) later
 
 export function getUserStats() {
 	return `${username}@${hostname}
@@ -38,7 +38,7 @@ async function getScreenResolution() {
 		);
 		process.exit(1);
 	}
-	const output = $`xrandr 2> /dev/null | grep * | cut -d ' ' -f4`.catch(
+	const output = await $`xrandr 2> /dev/null | grep * | cut -d ' ' -f4`.catch(
 		(error) => {
 			console.error(
 				chalk.red(
@@ -48,5 +48,5 @@ async function getScreenResolution() {
 			process.exit(1);
 		},
 	);
-	return output;
+	return output.text();
 }
