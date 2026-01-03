@@ -1,5 +1,6 @@
 import os from 'node:os'
 import { exec } from 'node:child_process'
+import chalk from 'chalk'
 
 const { username, shell } = os.userInfo()
 const hostname = os.hostname()
