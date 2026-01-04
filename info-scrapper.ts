@@ -12,12 +12,13 @@ const osInfo = `${await getOsName()} ${await getArchitecture()}`;
 const de = await getDE();
 const cpu = await getCPU();
 const memory = await getMemory();
+const kernel = await getKernel();
 
 export function getUserStats() {
 	return `${username}@${hostname}
 --------------
 OS: ${osInfo}
-Kernel: 6.4.4-arch1-1
+Kernel: ${kernel}
 Uptime: ${timeFormatter.format(-os.uptime() / 60 / 60 / 24, "days")}
 Shell: ${shellWithoutPath}
 Resolution: ${screenRes}
@@ -29,6 +30,10 @@ Terminal Font: Cascadia Code
 CPU: ${cpu}
 GPU: NVIDIA GeForce GTX 1060 3GB
 Memory: ${memory}`;
+}
+
+async function getKernel() {
+	return (await $`uname -r`.text()).trim();
 }
 
 async function getMemory() {
