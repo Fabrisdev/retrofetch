@@ -34,7 +34,7 @@ async function getOsName() {
 }
 
 async function getArchitecture() {
-	return await $`uname -m`.text();
+	return (await $`uname -m`.text()).trim();
 }
 
 async function getScreenResolution() {
