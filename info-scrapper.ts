@@ -30,7 +30,7 @@ Memory: 5247MiB / 7832MiB`;
 }
 
 async function getOsName() {
-	return await $`bash -c 'source /etc/os-release; echo $NAME'`.text();
+	return (await $`bash -c 'source /etc/os-release; echo $NAME'`.text()).trim();
 }
 
 async function getArchitecture() {
