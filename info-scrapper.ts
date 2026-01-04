@@ -28,7 +28,6 @@ GPU: Intel HD Graphics 530
 Memory: 5247MiB / 7832MiB`;
 }
 
-//This will only work on linux for the moment
 async function getScreenResolution() {
 	if (process.platform === "win32") {
 		console.error(
