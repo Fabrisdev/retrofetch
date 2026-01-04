@@ -9,6 +9,7 @@ const timeFormatter = new Intl.RelativeTimeFormat("en", { style: "long" });
 const screenRes = await getScreenResolution(); // Optimize this with promises (promisify) later
 const osInfo = `${await getOsName()} ${await getArchitecture()}`;
 const de = await getDE();
+const cpu = await getCPU();
 
 export function getUserStats() {
 	return `${username}@${hostname}
@@ -23,10 +24,16 @@ Theme: deepin-dark [GTK2/3]
 Icons: bloom [GTK2/3]
 Terminal: alacritty
 Terminal Font: Cascadia Code
-CPU: Intel i3-6100 (4) @ 3.700GHz
+CPU: ${cpu}
 GPU: NVIDIA GeForce GTX 1060 3GB
 GPU: Intel HD Graphics 530
 Memory: 5247MiB / 7832MiB`;
+}
+
+async function getCPU() {
+	return (
+		await $`cat /proc/cpuinfo | grep "model name" | head -n1`.text()
+	).trim();
 }
 
 async function getDE() {
