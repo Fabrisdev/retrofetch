@@ -32,6 +32,10 @@ async function getOsName() {
 	return await $`. /etc/os-release; echo $NAME`.text();
 }
 
+async function getArchitecture() {
+	return await $`uname -m`.text();
+}
+
 async function getScreenResolution() {
 	if (process.platform === "win32") {
 		console.error(
