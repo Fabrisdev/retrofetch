@@ -118,9 +118,11 @@ async function getPixelColorInRGB({
 function tryFindImageText() {
 	try {
 		return fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8");
-	} catch (error) {
+	} catch {
 		return logger
-			.error(`An error ocurred while trying to show the image: ${error}`)
+			.error(
+				`Logo image has not yet been set. Please configure it with --image`,
+			)
 			.crash();
 	}
 }
