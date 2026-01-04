@@ -102,7 +102,15 @@ async function readImage(imageName: string) {
 	}
 }
 
-async function getPixelColorInRGB({ image, x, y }) {
+async function getPixelColorInRGB({
+	image,
+	x,
+	y,
+}: {
+	image: Jimp;
+	x: number;
+	y: number;
+}) {
 	const colorInHex = image.getPixelColor(x, y);
 	return Jimp.intToRGBA(colorInHex);
 }
