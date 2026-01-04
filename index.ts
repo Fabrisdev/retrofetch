@@ -80,7 +80,7 @@ async function imageToText(image) {
 	return imageOutput;
 }
 
-function updateAsciiFile(ascii) {
+function updateAsciiFile(ascii: string) {
 	try {
 		fs.writeFileSync(ASCII_OUTPUT_FILE_PATH, ascii);
 	} catch (error) {
@@ -92,16 +92,14 @@ function updateAsciiFile(ascii) {
 	}
 }
 
-async function readImage(imageName) {
-	let image;
+async function readImage(imageName: string) {
 	try {
-		image = await Jimp.read(imageName);
+		return await Jimp.read(imageName);
 	} catch (error) {
-		logger
+		return logger
 			.error(`An error ocurred while trying to read the image: ${error}`)
 			.crash();
 	}
-	return image;
 }
 
 async function getPixelColorInRGB({ image, x, y }) {
