@@ -28,7 +28,9 @@ GPU: Intel HD Graphics 530
 Memory: 5247MiB / 7832MiB`;
 }
 
-async function getOsName() {}
+async function getOsName() {
+	return await $`. /etc/os-release; echo $NAME`.text();
+}
 
 async function getScreenResolution() {
 	if (process.platform === "win32") {
