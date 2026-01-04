@@ -81,8 +81,7 @@ $0 ~ /width:/ && $0 ~ /height:/ && $0 ~ /refresh:/ {
 }
 
 /flags: current/ {
-  type = (output ~ /^eDP/) ? "Internal" : "External"
-  printf "%s: %sx%s @ %d Hz [%s]\n", output, w, h, hz, type
+  printf "%sx%s @ %d Hz\n", w, h, hz
 }'
 `.catch((error) => {
 		console.error(
