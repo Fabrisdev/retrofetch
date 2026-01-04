@@ -62,5 +62,5 @@ $0 ~ /width:/ && $0 ~ /height:/ && $0 ~ /refresh:/ {
 		);
 		process.exit(1);
 	});
-	return output.text();
+	return output.text().trim();
 }
