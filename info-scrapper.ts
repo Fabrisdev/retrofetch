@@ -1,6 +1,7 @@
-import os from "node:os";
+import os, { tmpdir } from "node:os";
 import { $ } from "bun";
 import chalk from "chalk";
+import path from "path";
 
 const { username, shell } = os.userInfo();
 const hostname = os.hostname();
@@ -67,7 +68,8 @@ async function getScreenResolution() {
 		);
 		process.exit(1);
 	}
-	const output = await $`wayland-info | awk '
+	const outputFile = path.join(tmpdir(), "retrofetch-screen-resolution");
+	await $`wayland-info | awk '
 /name:/ {
   output = $2
 }
@@ -82,7 +84,7 @@ $0 ~ /width:/ && $0 ~ /height:/ && $0 ~ /refresh:/ {
 
 /flags: current/ {
   printf "%sx%s @ %d Hz\n", w, h, hz
-}'
+}' > ${outputFile}
 `.catch((error) => {
 		console.error(
 			chalk.red(
@@ -91,5 +93,5 @@ $0 ~ /width:/ && $0 ~ /height:/ && $0 ~ /refresh:/ {
 		);
 		process.exit(1);
 	});
-	return output.text().trim();
+	return (await Bun.file(outputFile).text()).trim();
 }
