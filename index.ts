@@ -113,7 +113,7 @@ function tryFindImageText() {
 	try {
 		return fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8");
 	} catch (error) {
-		logger
+		return logger
 			.error(`An error ocurred while trying to show the image: ${error}`)
 			.crash();
 	}
