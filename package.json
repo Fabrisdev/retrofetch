@@ -4,7 +4,8 @@
 	"description": "A replica of neofetch how I would like it",
 	"main": "index.js",
 	"scripts": {
-		"start": "bun index.ts"
+		"start": "bun index.ts",
+		"build": "bun build ./index.ts --compile --outfile retrofetch"
 	},
 	"keywords": [
 		"afetch",
