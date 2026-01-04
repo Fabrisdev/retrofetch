@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 const { username, shell } = os.userInfo();
 const hostname = os.hostname();
-const shellWithoutPath = shell.split("/").at(-1); //this may not work on Windows
+const shellWithoutPath = shell.split("/").at(-1);
 const timeFormatter = new Intl.RelativeTimeFormat("en", { style: "long" });
 const screenRes = await getScreenResolution(); // Optimize this with promises (promisify) later
 
