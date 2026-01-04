@@ -18,7 +18,12 @@ bun run build
 mv retrofetch ~/.local/bin
 ```
 Check now if you can run it with `retrofetch`. If it can't find the command continue with step 4.
+
 4. Add it to your PATH
 ```bash
 echo 'export PATH="$HOME/.local/bin:$PATH"' > ~/.bashrc
 ```
+
+## Possible dependencies
+These are some dependencies you *may* need to install on your system for retrofetch to work properly. However, most likely you already have them installed. Only check this section if retrofetch is crashing.
+- wayland-info
