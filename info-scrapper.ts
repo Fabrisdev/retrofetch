@@ -27,7 +27,6 @@ Terminal: alacritty
 Terminal Font: Cascadia Code
 CPU: ${cpu}
 GPU: NVIDIA GeForce GTX 1060 3GB
-GPU: Intel HD Graphics 530
 Memory: ${memory}`;
 }
 
