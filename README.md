@@ -24,6 +24,13 @@ Check now if you can run it with `retrofetch`. If it can't find the command cont
 echo 'export PATH="$HOME/.local/bin:$PATH"' > ~/.bashrc
 ```
 
+## Usage
+The first time the program will crash if you run it without defining the image logo to show. You can do so with the `--image` command-line argument.
+```
+retrofetch --image ~/Pictures/my_cool_image.png
+```
+From there you can just run it with `retrofetch`.
+
 ## Possible dependencies
 These are some dependencies you *may* need to install on your system for retrofetch to work properly. However, most likely you already have them installed. Only check this section if retrofetch is crashing.
 - wayland-info
