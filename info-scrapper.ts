@@ -1,7 +1,7 @@
 import os, { tmpdir } from "node:os";
+import path from "node:path";
 import { $ } from "bun";
 import chalk from "chalk";
-import path from "path";
 
 const { username, shell } = os.userInfo();
 const hostname = os.hostname();
