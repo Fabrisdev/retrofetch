@@ -32,11 +32,13 @@ Memory: ${memory}`;
 }
 
 async function getMemory() {
-	const info = (await $`cat /proc/meminfo`.text())
+	const info = (await $`cat /proc/meminfo | head -2`.text())
 		.trim()
-		.split(os.EOL)
-		.slice(0, -2);
-	return info;
+		.split(os.EOL);
+	const [rawMemTotal, rawMemFree] = info;
+	const memTotal = rawMemTotal.slice(16);
+	const memFree = rawMemFree.slice(16);
+	return `${memFree} / ${memTotal}`;
 }
 
 async function getCPU() {
