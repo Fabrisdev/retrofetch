@@ -7,11 +7,12 @@ const hostname = os.hostname();
 const shellWithoutPath = shell.split("/").at(-1);
 const timeFormatter = new Intl.RelativeTimeFormat("en", { style: "long" });
 const screenRes = await getScreenResolution(); // Optimize this with promises (promisify) later
+const osInfo = `${await getOsName()} ${await getArchitecture()}`;
 
 export function getUserStats() {
 	return `${username}@${hostname}
 --------------
-OS: Arch Linux x86_64
+OS: ${osInfo}
 Kernel: 6.4.4-arch1-1
 Uptime: ${timeFormatter.format(-os.uptime() / 60 / 60 / 24, "days")}
 Shell: ${shellWithoutPath}
