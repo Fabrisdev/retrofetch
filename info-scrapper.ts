@@ -19,7 +19,6 @@ Uptime: ${timeFormatter.format(-os.uptime() / 60 / 60 / 24, "days")}
 Shell: ${shellWithoutPath}
 Resolution: ${screenRes}
 DE: ${de}
-WM: LG3D
 Theme: deepin-dark [GTK2/3]
 Icons: bloom [GTK2/3]
 Terminal: alacritty
