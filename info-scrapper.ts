@@ -37,15 +37,30 @@ async function getScreenResolution() {
 		);
 		process.exit(1);
 	}
-	const output = await $`xrandr 2> /dev/null | grep * | cut -d ' ' -f4`.catch(
-		(error) => {
-			console.error(
-				chalk.red(
-					`❌ An error ocurred while trying to get the screen resolution: ${error}`,
-				),
-			);
-			process.exit(1);
-		},
-	);
+	const output = await $`wayland-info | awk '
+/name:/ {
+  output = $2
+}
+
+$0 ~ /width:/ && $0 ~ /height:/ && $0 ~ /refresh:/ {
+  for (i = 1; i <= NF; i++) {
+    if ($i == "width:")   w = $(i+1)
+    if ($i == "height:")  h = $(i+1)
+    if ($i == "refresh:") hz = int($(i+1))
+  }
+}
+
+/flags: current/ {
+  type = (output ~ /^eDP/) ? "Internal" : "External"
+  printf "%s: %sx%s @ %d Hz [%s]\n", output, w, h, hz, type
+}'
+`.catch((error) => {
+		console.error(
+			chalk.red(
+				`❌ An error ocurred while trying to get the screen resolution: ${error}`,
+			),
+		);
+		process.exit(1);
+	});
 	return output.text();
 }
