@@ -30,6 +30,14 @@ GPU: Intel HD Graphics 530
 Memory: 5247MiB / 7832MiB`;
 }
 
+async function getMemory() {
+	const info = (await $`cat /proc/meminfo`.text())
+		.trim()
+		.split(os.EOL)
+		.slice(0, -2);
+	return info;
+}
+
 async function getCPU() {
 	return (await $`cat /proc/cpuinfo | grep "model name" | head -n1`.text())
 		.trim()
