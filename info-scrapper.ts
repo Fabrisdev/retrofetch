@@ -31,9 +31,9 @@ Memory: 5247MiB / 7832MiB`;
 }
 
 async function getCPU() {
-	return (
-		await $`cat /proc/cpuinfo | grep "model name" | head -n1`.text()
-	).trim();
+	return (await $`cat /proc/cpuinfo | grep "model name" | head -n1`.text())
+		.trim()
+		.slice(13);
 }
 
 async function getDE() {
