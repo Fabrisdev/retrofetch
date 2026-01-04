@@ -44,8 +44,8 @@ for (let x = 0; x < Math.max(IMAGE_SIZE, statsTextSplittedByLine.length); x++) {
 }
 console.log(textToShow);
 
-function getLinesSizes(statsText) {
-	const linesSizes = [];
+function getLinesSizes(statsText: string) {
+	const linesSizes: number[] = [];
 	const statsTextSplittedByLine = statsText.split(os.EOL);
 	for (
 		let x = 0;
@@ -60,7 +60,7 @@ function getLinesSizes(statsText) {
 	return linesSizes;
 }
 
-async function imageToText(image) {
+async function imageToText(image: Jimp) {
 	const { width, height } = image.bitmap;
 	let imageOutput = "";
 	for (let y = 0; y < height; y++) {
