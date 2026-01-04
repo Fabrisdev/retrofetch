@@ -8,6 +8,7 @@ const shellWithoutPath = shell.split("/").at(-1);
 const timeFormatter = new Intl.RelativeTimeFormat("en", { style: "long" });
 const screenRes = await getScreenResolution(); // Optimize this with promises (promisify) later
 const osInfo = `${await getOsName()} ${await getArchitecture()}`;
+const de = await getDE();
 
 export function getUserStats() {
 	return `${username}@${hostname}
@@ -17,7 +18,7 @@ Kernel: 6.4.4-arch1-1
 Uptime: ${timeFormatter.format(-os.uptime() / 60 / 60 / 24, "days")}
 Shell: ${shellWithoutPath}
 Resolution: ${screenRes}
-DE: qtile
+DE: ${de}
 WM: LG3D
 Theme: deepin-dark [GTK2/3]
 Icons: bloom [GTK2/3]
@@ -27,6 +28,10 @@ CPU: Intel i3-6100 (4) @ 3.700GHz
 GPU: NVIDIA GeForce GTX 1060 3GB
 GPU: Intel HD Graphics 530
 Memory: 5247MiB / 7832MiB`;
+}
+
+async function getDE() {
+	return (await $`echo $XDG_CURRENT_DESKTOP`.text()).trim();
 }
 
 async function getOsName() {
