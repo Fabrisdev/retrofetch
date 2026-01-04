@@ -10,6 +10,7 @@ const screenRes = await getScreenResolution(); // Optimize this with promises (p
 const osInfo = `${await getOsName()} ${await getArchitecture()}`;
 const de = await getDE();
 const cpu = await getCPU();
+const memory = await getMemory();
 
 export function getUserStats() {
 	return `${username}@${hostname}
@@ -27,7 +28,7 @@ Terminal Font: Cascadia Code
 CPU: ${cpu}
 GPU: NVIDIA GeForce GTX 1060 3GB
 GPU: Intel HD Graphics 530
-Memory: 5247MiB / 7832MiB`;
+Memory: ${memory}`;
 }
 
 async function getMemory() {
