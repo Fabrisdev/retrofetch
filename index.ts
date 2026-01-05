@@ -9,6 +9,7 @@ import {
 	IMAGE_HORIZONTAL_SCALE,
 	IMAGE_SIZE,
 } from "./consts.js";
+import { tryFindImageText } from "./image.js";
 import { getUserStats } from "./info-scrapper.js";
 import { logger } from "./logger.js";
 
@@ -113,16 +114,4 @@ async function getPixelColorInRGB({
 }) {
 	const colorInHex = image.getPixelColor(x, y);
 	return Jimp.intToRGBA(colorInHex);
-}
-
-function tryFindImageText() {
-	try {
-		return fs.readFileSync(ASCII_OUTPUT_FILE_PATH, "utf8");
-	} catch {
-		return logger
-			.error(
-				`Logo image has not yet been set. Please configure it with --image`,
-			)
-			.crash();
-	}
 }
