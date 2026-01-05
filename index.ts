@@ -9,7 +9,7 @@ import {
 	IMAGE_HORIZONTAL_SCALE,
 	IMAGE_SIZE,
 } from "./consts.js";
-import { tryFindImageText } from "./image.js";
+import { getImageText } from "./image.js";
 import { getUserStats } from "./info-scrapper.js";
 import { logger } from "./logger.js";
 
@@ -29,7 +29,11 @@ if (imageName) {
 	logger.success("Done! The image has updated succesfully.").exit();
 }
 
-const imageText = tryFindImageText();
+const imageText = await getImageText().catch(() => {
+	logger
+		.error("Logo image has not yet been set. Please configure it with --image")
+		.crash();
+});
 
 const statsText = getUserStats();
 const imageTextSplittedByLine = imageText.split(os.EOL);
