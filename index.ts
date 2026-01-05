@@ -30,7 +30,7 @@ if (imageName) {
 }
 
 const imageText = await getImageText().catch(() => {
-	logger
+	return logger
 		.error("Logo image has not yet been set. Please configure it with --image")
 		.crash();
 });
